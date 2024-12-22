@@ -7,4 +7,7 @@ def index(request):
 
 def products(request):
     all_products = Product.objects.all()
-    return HttpResponse(all_products) 
+    context = {
+        'products':all_products
+    }
+    return render(request,'myapp/index.html',context)
