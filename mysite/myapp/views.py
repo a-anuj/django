@@ -11,3 +11,10 @@ def products(request):
         'products':all_products
     }
     return render(request,'myapp/index.html',context)
+
+def product_details(request,id):
+    product = Product.objects.get(id=id)
+    context = {
+        'product':product
+    }
+    return render(request,'myapp/details.html',context)
