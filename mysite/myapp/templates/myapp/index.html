@@ -1,0 +1,6 @@
+<html>
+    <h1>Welcome all!!</h1>
+    {% for product in products %}
+    <h2><strong>{{product.name}}</strong> - {{product.desc}} - {{ product.price }}</h2>
+    {% endfor %}
+</html>
