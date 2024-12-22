@@ -1,7 +1,7 @@
 <html>
     <h1>Welcome all!!</h1>
     {% for product in products %}
-    <a href="/myapp/products/{{ product.id }}">
+    <a href="{% url 'myapp:product_details' product.id %}">
         <h3><strong>{{product.name}}</strong> - {{product.desc}} - {{ product.price }}</h3>
     </a>
     {% endfor %}
