@@ -4,7 +4,8 @@
     
         {% for product in products %}
         <a href="{% url 'myapp:product_details' product.id %}">
-            <h3><strong>{{product.name}}</strong> - {{product.desc}} - {{ product.price }}</h3>
+            <h3><strong>{{product.name}}</strong> - {{product.desc}} - {{ product.price }}</h3><br>
+            <img src="{{ product.image.url }}" alt="">
         </a>
     {% endfor %}
 {% endblock %}
