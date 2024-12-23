@@ -1,33 +1,28 @@
+{% extends 'myapp/base.html' %}
 {% load static  %}
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'myapp/styles.css' %}">
-    </head>
-    <body>
-        <nav class="bg-white shadow-lg">
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="flex justify-between">
-                    <div class="flex space-7">
-                        <div>
-                            <a href="#" class="flex px-2 py-4">
-                                <img class="h-8 w-8" src="{% static 'myapp/images/logo.png' %}" alt="">
-                                <span class="text-gray-500 font-semibold text-lg">QuickCart</span>
-                            </a>
-                        </div>
-                        <div class="items-center flex space-x-1">
-                            <a href="#" class="py-4 px-2 text-gray-500 font-semibold border-b-4 border-red-500">Home</a>
-                            <a href="#" class="py-4 px-2 text-gray-500 font-semibold">About</a>
-                            <a href="#" class="py-4 px-2 text-gray-500 font-semibold">Contact</a>                            
-                        </div>
+{% block body %}
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-7">
+                    <div>
+                        <a href="#" class="flex px-2 py-4">
+                            <img class="h-8 w-8" src="{% static 'myapp/images/logo.png' %}" alt="">
+                            <span class="text-gray-500 font-semibold text-lg">QuickCart</span>
+                        </a>
+                    </div>
+                    <div class="items-center flex space-x-1">
+                        <a href="#" class="py-4 px-2 text-gray-500 font-semibold border-b-4 border-red-500">Home</a>
+                        <a href="#" class="py-4 px-2 text-gray-500 font-semibold">About</a>
+                        <a href="#" class="py-4 px-2 text-gray-500 font-semibold">Contact</a>                            
                     </div>
                 </div>
             </div>
-        </nav>
-            {% for product in products %}
-            <a href="{% url 'myapp:product_details' product.id %}">
-                <h3><strong>{{product.name}}</strong> - {{product.desc}} - {{ product.price }}</h3>
-            </a>
+        </div>
+    </nav>
+        {% for product in products %}
+        <a href="{% url 'myapp:product_details' product.id %}">
+            <h3><strong>{{product.name}}</strong> - {{product.desc}} - {{ product.price }}</h3>
+        </a>
     {% endfor %}
-    </body>
-    
-</html>
+{% endblock %}
