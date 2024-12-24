@@ -20,4 +20,11 @@ def product_details(request,id):
     return render(request,'myapp/details.html',context)
 
 def add_product(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        price = request.POST.get('price')
+        desc = request.POST.get('desc')
+        image = request.FILES['upload']
+        product = Product(name=name,price=price,desc=desc,image=image)
+        product.save()
     return render(request,'myapp/addproduct.html')
