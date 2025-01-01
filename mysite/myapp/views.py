@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView,DetailView
 
 
 # Create your views here.
@@ -29,6 +29,13 @@ def product_details(request,id):
         'product':product
     }
     return render(request,'myapp/details.html',context)
+
+
+class ProductDetailView(DetailView):
+    model = Product
+    template_name = 'myapp/details.html'
+    context_object_name = 'product'
+
 
 @login_required
 def add_product(request):
