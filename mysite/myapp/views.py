@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 # Create your views here.
 def index(request):
@@ -70,6 +70,13 @@ def update_product(request,id):
         "product" : product,
     }
     return render(request,'myapp/updateproduct.html',context)
+
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ['name','price','desc','image','seller_name']
+    template_name_suffix = '_update_form'
+
 
 def delete_product(request,id):
     product = Product.objects.get(id=id)
