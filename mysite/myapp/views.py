@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Product
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView
-
+from django.views.generic.edit import CreateView
 
 # Create your views here.
 def index(request):
@@ -48,6 +48,14 @@ def add_product(request):
         product = Product(name=name,price=price,desc=desc,image=image,seller_name=seller_name)
         product.save()
     return render(request,'myapp/addproduct.html')
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ['name','price','desc','image','seller_name']
+
+    
+
 
 def update_product(request,id):
     product = Product.objects.get(id=id)
