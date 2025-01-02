@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView,DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -12,8 +13,11 @@ def index(request):
 
 def products(request):
     all_products = Product.objects.all()
+    paginator = Paginator(all_products,3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'products':all_products
+        'page_obj':page_obj
     }
     return render(request,'myapp/index.html',context)
 

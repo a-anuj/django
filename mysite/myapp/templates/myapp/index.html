@@ -19,7 +19,7 @@
     </div>
 
     <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-3 lg:grid-cols-3 gap-5">   
-    {% for product in products %}
+    {% for product in page_obj %}
     <a href="{% url 'myapp:product_details' product.id %}">
 
         <div class="rounded overflow-hidden shadow-lg">
