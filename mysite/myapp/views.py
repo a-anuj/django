@@ -12,8 +12,13 @@ def index(request):
     return HttpResponse("Hello World")
 
 def products(request):
-    all_products = Product.objects.all()
-    paginator = Paginator(all_products,3)
+    page_obj = all_products = Product.objects.all()
+
+    product_name = request.GET.get('product_name')
+    if product_name!='' and product_name is not None:
+        page_obj = all_products.filter(name__icontains=product_name)
+
+    paginator = Paginator(page_obj,3)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
